@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     
+    permissions:
+      contents: write
+    
     steps:
       # generates a snake game 
       - name: generate github-contribution-grid-snake.svg
@@ -38,7 +41,6 @@ jobs:
       - name: push github-contribution-grid-snake.svg to the output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: output
           publish_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
